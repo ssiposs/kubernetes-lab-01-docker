@@ -4,7 +4,39 @@ In Lab 1 you pick a programming language and framework of your choice, then buil
 
 The goal isn't to write a large application. It's to get comfortable packaging and running a service in a container, and to understand the moving parts around it: images, containers, ports, and volumes.
 
-I have pushed this image at the following URL: ... (complete here).
+I have pushed this image at the following URL: [docker.io/ssiposs/kubernetes-lab-01:lab1](https://hub.docker.com/r/ssiposs/kubernetes-lab-01/tags)
+
+```bash
+docker pull ssiposs/kubernetes-lab-01:lab1
+```
+
+## My submission
+
+Lab 1 service: **Spring Boot** mini-pastebin in [`pastebin-spring/`](pastebin-spring/) (Debian multistage Docker image).
+
+```text
+kubernetes-lab-01-docker/
+├── README.md                 # this file
+├── pastebin-spring/          # Lab 1 project (Dockerfile, source, compose)
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   ├── pom.xml
+│   └── src/
+└── examples/                 # course reference samples (unchanged)
+```
+
+Quick start:
+
+```bash
+cd pastebin-spring
+docker compose up --build -d
+curl -s http://localhost:8080/health
+curl -s -X POST http://localhost:8080/paste \
+  -H 'Content-Type: application/json' \
+  -d '{"url":"https://www.docker.com/"}'
+```
+
+See [`pastebin-spring/README.md`](pastebin-spring/README.md) for details.
 
 ---
 
